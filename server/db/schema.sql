@@ -1,0 +1,10 @@
+CREATE TABLE IF NOT EXISTS transactions (
+  id SERIAL PRIMARY KEY,
+  user_phone VARCHAR(20) NOT NULL,
+  recipient_phone VARCHAR(20) NOT NULL,
+  amount NUMERIC(10, 2) NOT NULL,
+  bundle_type VARCHAR(10) NOT NULL,
+  status VARCHAR(20) NOT NULL DEFAULT 'PENDING',
+  created_at TIMESTAMP DEFAULT NOW(),
+  updated_at TIMESTAMP DEFAULT NOW()
+);
