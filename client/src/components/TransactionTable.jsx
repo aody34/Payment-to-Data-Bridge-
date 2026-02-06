@@ -9,7 +9,8 @@ const TransactionTable = () => {
 
     const fetchTransactions = async () => {
         try {
-            const response = await axios.get('http://localhost:5000/api/transactions');
+            const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+            const response = await axios.get(`${apiUrl}/transactions`);
             setTransactions(response.data);
             setError(null);
         } catch (err) {
@@ -27,7 +28,8 @@ const TransactionTable = () => {
     const handleDisburse = async (txnId) => {
         setLoading(true);
         try {
-            await axios.post('http://localhost:5000/api/disburse', { transactionId: txnId });
+            const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+            await axios.post(`${apiUrl}/disburse`, { transactionId: txnId });
             fetchTransactions(); // Immediate refresh
         } catch (err) {
             console.error('Disbursement failed:', err);

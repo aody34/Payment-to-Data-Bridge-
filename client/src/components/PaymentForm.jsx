@@ -22,7 +22,8 @@ const PaymentForm = ({ onPaymentSuccess }) => {
         }
 
         try {
-            const response = await axios.post('http://localhost:5000/api/pay', {
+            const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+            const response = await axios.post(`${apiUrl}/pay`, {
                 userPhone,
                 recipientPhone,
                 amount
